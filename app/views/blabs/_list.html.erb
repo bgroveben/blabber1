@@ -8,7 +8,7 @@
               <a href="/users/<%= blab.user.id %>"><%= image_tag avatar_url(blab.user) %></a>
             </div>
             <div class="small-9 large-11 columns">
-              <strong><%= blab.user.name.split(' ')[0] %>: </strong>
+              <strong><%= blab.user.first_name %>: </strong>
               <%= blab.text %><br>
               <%= link_to 'details', blab, class: 'details' %>                                            
             </div>
