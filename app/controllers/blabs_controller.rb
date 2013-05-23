@@ -4,13 +4,15 @@ class BlabsController < ApplicationController
   # GET /blabs
   # GET /blabs.json
   def index
-    @blabs = Blab.all
+  @search = Blab.search(params[:q])
+  @blabs = @search.result
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @blabs }
-    end
+
+  respond_to do |format|
+    format.html # index.html.erb
+    format.json { render json: @blabs }
   end
+end
 
   # GET /blabs/1
   # GET /blabs/1.json
