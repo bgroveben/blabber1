@@ -1,5 +1,8 @@
 Blabber1::Application.routes.draw do
 
+  resources :blabs
+
+
 root :to => 'pages#landing'
 get 'signup', to: 'users#new' 
 get 'signin', to: 'sessions#new'
