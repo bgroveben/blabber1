@@ -17,6 +17,7 @@ end
 
 module Blabber1
   class Application < Rails::Application
+    config.assets.initialize_on_precompile = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -64,6 +65,5 @@ module Blabber1
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    config.assets.initialize_on_precompile = false
   end
 end
