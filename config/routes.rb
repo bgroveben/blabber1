@@ -7,7 +7,7 @@ root :to => 'pages#landing'
 get 'signup', to: 'users#new' 
 get 'signin', to: 'sessions#new'
 get 'signout', to: 'sessions#destroy'
-resources :sessions, only: [:create]
+resources :users, only: [:create, :show]
 
 
   # The priority is based upon order of creation:
