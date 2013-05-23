@@ -5,48 +5,48 @@
 <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
   <head>
-  	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 
-  	<!-- Uncomment to make IE8 render like IE7 -->
-  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+    <!-- Uncomment to make IE8 render like IE7 -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
-  	<!-- Set the viewport width to device width for mobile -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
-  	<%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
-  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
-<body>
+  <body>
 
-  <div class="fixed">
-    <nav class="top-bar">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/">Blabber</a></h1>
-        </li>
-        <li class="toggle-topbar menu-icon">
-          <a href="#"><span></span></a>
-        </li>
-      </ul>
-      <section class="top-bar-section">
-        <ul class="right">
-          <% if current_user %>
-          <li><a>Hi <%= current_user.first_name %>!</a><li>
-          <li class="divider"></li>
-          <li><%= link_to "Sign Out", signout_path %></li>
-        <% else %>
-          <li class="divider"></li>
-          <li><%= link_to "Sign In", signin_path %></li>
-        <% end %>
-      </ul>
-    </section>
-  </nav>
-</div>
+    <div class="fixed">
+      <nav class="top-bar">
+          <ul class="title-area">
+            <li class="name">
+              <h1><a href="/blabs">Blabber</a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon">
+              <a href="#"><span></span></a>
+            </li>
+          </ul>
+        <section class="top-bar-section">
+          <ul class="right">
+            <% if current_user %>
+              <li><a>Hi <%= current_user.first_name %>!</a><li>
+              <li class="divider"></li>
+              <li><%= link_to "Sign Out", signout_path %></li>
+            <% else %>
+              <li class="divider"></li>
+              <li><%= link_to "Sign In", signin_path %></li>
+            <% end %>
+          </ul>
+        </section>
+      </nav>
+    </div>
 
     <% if flash[:notice] %>
       <div class="global alert-box">
@@ -60,7 +60,8 @@
       </div>
     <% end %>
 
-  <%= yield %>
+    <%= yield %>
 
-</body>
+  </body>
+
 </html>

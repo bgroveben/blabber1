@@ -1,6 +1,20 @@
-<div class="row" id="index-blab">
-  <div class="small-12 columns">
-    <h1><%= @user.first_name %>'s Blabber</h1>
-    <%= render 'blabs/list' %>
-  </div>
+<div class="row" id="show-blab">
+	<div class="large-8 large-offset-2 columns">
+		<div class="panel light radius">
+			<h2>
+			...on <%= @blab.created_at.strftime("%b %d, %Y") %>
+			<br>this was blabbed by
+			</h2>
+			<p id="boom"><%= @blab.user.first_name %>!</p>
+			<div class="row">
+				<div class="large-10 large-offset-1 columns">
+					<div class="white panel radius">
+						<h3>"<%= @blab.text %>"<h3>
+					</div>
+				</div>
+			</div>
+			<%= link_to 'go blabber', blabs_path, class: "button radius secondary" %>
+			<%= link_to 'edit blab', edit_blab_path, class: "button radius secondary" %>
+		</div>
+	</div>
 </div>

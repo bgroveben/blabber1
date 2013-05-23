@@ -1,17 +1,15 @@
 Blabber1::Application.routes.draw do
-
-  resources :users
-
-
+  
   resources :blabs
 
 
-root :to => 'pages#landing'
-get 'signup', to: 'users#new' 
-get 'signin', to: 'sessions#new'
-get 'signout', to: 'sessions#destroy'
-resources :users, only: [:create, :show]
-
+  root :to => 'pages#landing'
+  # url :to => controller#action
+  resources :users, :only => [:create]
+  get 'signup' => 'users#new'
+  get 'signin' => 'sessions#new'
+  get 'signout'=> 'sessions#destroy'
+  resources :sessions, :only => [:create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

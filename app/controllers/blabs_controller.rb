@@ -1,8 +1,12 @@
 class BlabsController < ApplicationController
+
+  before_filter :authorize 
+
   # GET /blabs
   # GET /blabs.json
   def index
-    @blabs = Blab.all
+    @search = Blab.search(params[:q])
+    @blabs = @search.result
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +48,8 @@ class BlabsController < ApplicationController
 
     respond_to do |format|
       if @blab.save
-        format.html { redirect_to @blab, notice: 'Blab was successfully created.' }
+        current_user.blabs << @blab
+        format.html { redirect_to blabs_path, notice: 'good job blabber mouth.' }
         format.json { render json: @blab, status: :created, location: @blab }
       else
         format.html { render action: "new" }
@@ -60,7 +65,7 @@ class BlabsController < ApplicationController
 
     respond_to do |format|
       if @blab.update_attributes(params[:blab])
-        format.html { redirect_to @blab, notice: 'Blab was successfully updated.' }
+        format.html { redirect_to blabs_path, notice: 'good job blabber mouth.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
