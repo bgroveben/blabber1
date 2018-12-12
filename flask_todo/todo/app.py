@@ -1,0 +1,2 @@
+export FLASK_APP=$VIRTUAL_ENV/../todo/app.py
+export DEBUG='True'

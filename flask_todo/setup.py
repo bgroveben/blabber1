@@ -1,3 +1,5 @@
+# https://docs.python.org/3/distutils/setupscript.html
+
 from setuptools import setup, find_packages
 
 requires = [
@@ -12,6 +14,7 @@ setup(
     description='Another to-do list built with Flask',
     author='bgroveben',
     author_email='bgroveben@gmail.com',
+    maintainer='bgroveben',
     keywords='python flask web',
     packages=find_packages(),
     include-package_data=True,
