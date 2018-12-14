@@ -141,3 +141,6 @@ htmlcov/
 .coverage
 .coverage.*
 *,cover
+
+# Miscellaneous Pipfiles
+Pipfile
