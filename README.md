@@ -1,3 +1,5 @@
 # Web Applications built with Python and Flask
 
-First project is an API for a nice and boring [to-do list](https://opensource.com/article/18/4/flask) -- Connecting the database in Flask
+[Token-Based Authentication With Flask](https://realpython.com/token-based-authentication-with-flask/)
+
+[Python Testing](https://realpython.com/python-testing/)
