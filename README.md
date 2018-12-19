@@ -1,5 +1,5 @@
 # Web Applications built with Python and Flask
 
-[Token-Based Authentication With Flask](https://realpython.com/token-based-authentication-with-flask/)
+[Flask Tutorial](http://flask.pocoo.org/docs/1.0/tutorial/) from the docs.  
 
-[Python Testing](https://realpython.com/python-testing/)
+[Creating Web APIs with Python and Flask](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask)
