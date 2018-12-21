@@ -1,11 +1,63 @@
-from flask_api import FlaskAPI
+from flask import request, url_for
+from flask_api import FlaskAPI, status, exceptions
 
-# Initialize the application:
 app = FlaskAPI(__name__)
 
-# Return a valid response object, list, or dict
-# If you're making the API request from a regular client, this will default to a JSON response.
-# If you're viewing the API in a browser it defaults to the browsable API HTML.
-@app.route('/example/')
-def example():
-    return {'key': 'value'}
+notes = {
+    0: 'One for the money',
+    1: 'Two for the show',
+    2: 'Three to get ready',
+}
+
+def note_repr(key):
+    return {
+        'url': request.host_url.rstrip('/') + url_for('notes_detail', key=key),
+        'text': notes[key]
+    }
+
+@app.route("/", methods=['GET', 'POST'])
+def notes_list():
+    """
+    Create and list notes.
+    """
+    if request.method == 'POST':
+        note = str(request.data.get('text', ''))
+        idx = max(notes.keys()) + 1
+        notes[idx] = note
+        return note_repr(idx), status.HTTP_201_CREATED
+
+    # request.method =='GET'
+    return [note_repr(idx) for idx in sorted(notes.keys())]
+
+@app.route("/<int:key>/", methods=['GET', 'PUT', 'DELETE'])
+def notes_detail(key):
+    """
+    Retrieve, update, or delete note instances.
+    """
+    if request.method == 'PUT':
+        note = str(request.data.get('text', ''))
+        notes[key] = note
+        return note_repr(key)
+
+    elif request.method == 'DELETE':
+        notes.pop(key, None)
+        return '', status.HTTP_204_NO_CONTENT
+
+    # request.method == 'GET'
+    if key not in notes:
+        raise exceptions.NotFound()
+    return note_repr(key)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+# $% curl -X GET http://127.0.0.1:5000/
+# [{"url": "http://127.0.0.1:5000/0/", "text": "One for the money"}, {"url": "http://127.0.0.1:5000/1/", "text": "Now go cat go"}, {"url": "http://127.0.0.1:5000/2/", "text": "Three to get ready"}]%
+
+# $% curl -X GET http://127.0.0.1:5000/1/
+# {"url": "http://127.0.0.1:5000/1/", "text": "Now go cat go"}%
+
+# $% curl -X PUT http://127.0.0.1:5000/1/ -d text="Now go cat go"
+# {"url": "http://127.0.0.1:5000/1/", "text": "Now go cat go"}%
