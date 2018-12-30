@@ -80,3 +80,21 @@ def load_logged_in_user():
     def logout():
         session.clear()
         return redirect(url_for('index'))
+
+
+# A decorator can be used to check the user's login for each view.
+def login_required(view):
+    """
+    This decorator returns a new view function that wraps the original view
+    it’s applied to.
+    The new function checks if a user is loaded and redirects to the login page
+    otherwise.
+    """
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+
+        return view(**kwargs)
+
+    return wrapped_view
