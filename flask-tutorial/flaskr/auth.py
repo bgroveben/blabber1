@@ -72,3 +72,11 @@ def load_logged_in_user():
         g.user = get_db().execute(
             'SELECT * FROM user WHERE id = ?', (user_id,)
         ).fetchone()
+
+
+# Logout removes the user id from the session.
+# Then load_logged_in_user won't load a user on subsequent requests.
+@bp.route ('/logout')
+    def logout():
+        session.clear()
+        return redirect(url_for('index'))
