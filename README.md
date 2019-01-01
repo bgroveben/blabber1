@@ -1,7 +1,7 @@
 # Web Applications built with Python and Flask
 
 [Flask Tutorial](http://flask.pocoo.org/docs/1.0/tutorial/) from the docs.  
-[I'm here](http://flask.pocoo.org/docs/1.0/tutorial/views/#endpoints-and-urls)
+[I'm here](http://flask.pocoo.org/docs/1.0/tutorial/templates/#log-in)
 
 [Flask API](https://www.flaskapi.org/)
 
