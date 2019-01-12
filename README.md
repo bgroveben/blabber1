@@ -2,7 +2,7 @@
 
 [Flask Tutorial](http://flask.pocoo.org/docs/1.0/tutorial/) from the docs.
 Code for Flaskr app [on Github](https://github.com/pallets/flask/tree/1.0.2/examples/tutorial).  
-[I'm here](http://flask.pocoo.org/docs/1.0/tutorial/install/#install-the-project)
+[I'm here](http://flask.pocoo.org/docs/1.0/tutorial/tests/#setup-and-fixtures)
 
 [Flask API](https://www.flaskapi.org/)
 
