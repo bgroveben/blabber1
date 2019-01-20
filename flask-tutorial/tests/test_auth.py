@@ -25,3 +25,35 @@ def test_register_validate_input(client, username, password, message):
         data={'username': username, 'password': password}
     )
     assert message in response.data
+
+def test_login(client, auth):
+    """
+    The tests for the login view are very similar to those for register.
+    Rather than testing the data in the database, session should have user_id
+    set after logging in.
+    """
+    assert client.get('/auth/login').status_code == 200
+    response = auth.login()
+    assert response.headers['Location'] == 'http://localhost'
+
+    with client:
+        client.get('/')
+        assert session['user_id'] == 1
+        assert g.user['username'] == 'test'
+
+@pytest.mark.parametrize(('username', 'password', 'message'), (
+    ('a', 'test', b'Incorrect username.'),
+    ('test', 'a', b'Incorrct password.'),
+))
+def test_login_validate_input(auth, username, password, message):
+    response = auth.login(username, password)
+    assert message in response.data
+
+def test_logout(client, auth):
+    auth.login()
+    # Using client in a with block lets you access variables like session after
+    # a response is returned.
+    with client:
+        auth.logout()
+        # session should not contain user_id after logging out.
+        assert 'user_id' not in session
